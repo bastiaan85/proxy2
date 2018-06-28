@@ -62,10 +62,9 @@ class ProxyRequestHandler(BaseHTTPRequestHandler):
 
     def do_CONNECT(self):
         if os.path.isfile(self.cakey) and os.path.isfile(self.cacert) and os.path.isfile(self.certkey) and os.path.isdir(self.certdir):
-            print('intercept')
             self.connect_intercept()
         else:
-            print('relay')
+            print('relaying due to missing certificate files')
             self.connect_relay()
 
     def connect_intercept(self):
@@ -206,7 +205,6 @@ class ProxyRequestHandler(BaseHTTPRequestHandler):
         for k,v in res.headers.items():
             self.send_header(k,v)
         self.end_headers()
-        print('writing body')
         self.wfile.write(res_body)
         self.wfile.flush()
 
