@@ -180,7 +180,7 @@ class ProxyRequestHandler(BaseHTTPRequestHandler):
 
         content_encoding = res.headers.get('Content-Encoding', 'identity')
         res_body = self.decode_content_body(res_body, content_encoding)
-        
+
         try:
             charset = re.search('charset=(\S+)', res.headers.get('Content-type', ''))[1]
             print('decoding', charset)
@@ -345,7 +345,6 @@ class ProxyRequestHandler(BaseHTTPRequestHandler):
 
         cookies = res.headers.get('Set-Cookie')
         if cookies:
-            cookies = '\n'.join(cookies)
             print(with_color(31, "==== SET-COOKIE ====\n%s\n" % cookies))
 
         if res_body is not None:
