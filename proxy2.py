@@ -1,22 +1,22 @@
 # -*- coding: utf-8 -*-
-import sys
+import gzip
+import http.client
+import json
 import os
+import re
+import select
 import socket
 import ssl
-import select
-import http.client
-import urllib.parse
+import sys
 import threading
-import gzip
-import zlib
 import time
-import json
-import re
-from http.server import HTTPServer, BaseHTTPRequestHandler
-from socketserver import ThreadingMixIn
-from io import StringIO
-from subprocess import Popen, PIPE
+import urllib.parse
+import zlib
 from html.parser import HTMLParser
+from http.server import BaseHTTPRequestHandler, HTTPServer
+from io import StringIO
+from socketserver import ThreadingMixIn
+from subprocess import PIPE, Popen
 
 
 def with_color(c, s):
